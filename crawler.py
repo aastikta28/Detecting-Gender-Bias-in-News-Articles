@@ -17,7 +17,7 @@ destination = sys.argv[2]
 
 for crawl_month in range(1,13):
     
-    api_key = '0675388ccff7473fa715ccbc47d0759d:16:74308166'
+    api_key = '4ddd8c6844a146499178cb66172cdb5a:18:74308147'
     url = 'http://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:("Sports")'
 
     date_range = calendar.monthrange(crawl_year, crawl_month)
