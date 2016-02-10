@@ -15,7 +15,7 @@ crawl_year = int(sys.argv[1])
 #crawl_month = int(sys.argv[2])
 destination = sys.argv[2]
 
-for crawl_month in range(8,13):
+for crawl_month in range(1,13):
     
     api_key = '4ddd8c6844a146499178cb66172cdb5a:18:74308147'
     url = 'http://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:("Sports")'
