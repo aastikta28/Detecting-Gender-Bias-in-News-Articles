@@ -55,7 +55,7 @@ for crawl_month in range(1,13):
     os.chdir(path_prefix)
 
     show_hits = True
-    while len(docs) > 0:
+    while len(docs) > 0 :
         url_object = urllib2.urlopen(url + '&page=' + str(page_number))
         response = json.load(url_object)
         if show_hits:
@@ -64,16 +64,22 @@ for crawl_month in range(1,13):
             show_hits = False
         docs = response['response']['docs']
         page_number += 1
-        for doc in docs:
-            fil = open(str(crawl_year) + '_' + str(crawl_month) + '_' + str(doc_number), 'w+')
-            json.dump(doc, fil)
-            fil.close()
-            print 'Writing file number ' + str(doc_number)
-            doc_number += 1
-
-    if hits <= doc_number:
+        if page_number > 100:
+            break
+        else:
+            for doc in docs:
+                fil = open(str(crawl_year) + '_' + str(crawl_month) + '_' + str(doc_number), 'w+')
+                json.dump(doc, fil)
+                fil.close()
+                print 'Writing file number ' + str(doc_number)
+                doc_number += 1
+    
+    print hits , " and ", doc_number    
+    
+    if doc_number == 1001:
+            print "All docs received"
+    elif hits <= doc_number:
         print "All docs received."
-        
     else:
         print "Error occured during ", crawl_month
         sys.exit()
