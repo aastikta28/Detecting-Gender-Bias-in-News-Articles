@@ -1,4 +1,4 @@
-# python crawler.py YYYY MM <path to store docs>
+# python crawler.py YYYY <path to store docs>
 
 import calendar
 import datetime
@@ -8,7 +8,7 @@ import sys
 import urllib2
 
 if len(sys.argv) < 3:
-	print 'Please use this format: python crawler.py MM YYYY'
+	print 'Please use this format: python crawler.py YYYY <path to store docs>'
 	sys.exit()
 
 crawl_year = int(sys.argv[1])
@@ -18,7 +18,8 @@ destination = sys.argv[2]
 for crawl_month in range(1,13):
     
     api_key = '4ddd8c6844a146499178cb66172cdb5a:18:74308147'
-    url = 'http://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:("Sports")'
+    category = "Sports"
+    url = 'http://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:("' + category + '")'
 
     date_range = calendar.monthrange(crawl_year, crawl_month)
 
@@ -68,7 +69,10 @@ for crawl_month in range(1,13):
             break
         else:
             for doc in docs:
-                fil = open(str(crawl_year) + '_' + str(crawl_month) + '_' + str(doc_number), 'w+')
+                fil = open(
+                	category + '_' + str(crawl_year) + '_' + str(crawl_month) + '_' + str(doc_number), 
+                	'w+'
+                )
                 json.dump(doc, fil)
                 fil.close()
                 print 'Writing file number ' + str(doc_number)
