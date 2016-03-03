@@ -33,3 +33,21 @@ Querying core:
     select?q=news_desk:Sports&wt=xml"
 
 --------------------------------------------------------------------------------
+
+Python with Stanford NER:
+Stanford NER version: 2015-04-20
+PyNER: pip install ner
+
+Environment variables:
+STANFORD_MODELS
+\stanford-ner\classifiers
+
+JAVAHOME
+\Java\JDK18~1.0_6\java.exe
+
+CLASSPATH
+\stanford-ner\stanford-ner.jar
+
+Start Stanford NER server:
+java -mx1000m -cp stanford-ner-2015-04-20\classifiers\english.all.3class.distsim.crf.ser.gz -port 8080 -outputFormat inlineXML
+
