@@ -11,6 +11,6 @@ def gender_labeling(user_input):
     if gen == 'female' or gen == 'mostly_female':
         gen = 'female'
     if gen == 'andy':
-        gen = 'male'
+        gen = 'anonymous'
     return gen
     
