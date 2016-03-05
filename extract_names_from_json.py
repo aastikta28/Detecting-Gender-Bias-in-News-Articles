@@ -109,7 +109,9 @@ def extract_json(yr):
             "snippet": document['snippet'],
             "subsection_name": document['subsection_name'],
             "pub_date": document['pub_date'],
-            "persons" : document['persons'],
+            "persons" : document['persons'] if 'persons' in document else None,
+            "subject" : document['subject'] if 'subject' in document else None,
+            "organizations" : document['organizations'] if 'organizations' in document else None,
             "male": male,
             "female": female,
             "anonymous": anony
