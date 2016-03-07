@@ -48,7 +48,7 @@ def extract_json(yr):
             # Extract categories from keywords
             for keyword in document['keywords']:
                 category = keyword['name']
-                value = keyword['value']
+                value = keyword['value'] if 'value' in keyword else None
                 if category not in document: document[category] = []
                 document[category].append(value)
 			
@@ -124,7 +124,7 @@ def extract_json(yr):
             #output_data_path = os.path.join("json_data", year.strip())
             file_name = file_path.split('\\')
             path_prefix = year+'_'+str(i)
-            os.chdir('D:\Git\CSCE_670\Detecting-Gender-Bias-in-News-Articles\json_data')
+            os.chdir('C:\Users\Tanu\Documents\GitHub\Detecting-Gender-Bias-in-News-Articles\json_data')
 
             if not os.path.exists(path_prefix):
                 os.makedirs(path_prefix)
