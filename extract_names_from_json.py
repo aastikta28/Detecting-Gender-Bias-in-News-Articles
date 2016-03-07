@@ -37,8 +37,8 @@ def extract_json(yr):
 			'subsection_name',
 			'pub_date',
 			'keywords',
-                 '_id',
-                 'headline'                 
+            '_id',
+            'headline'                 
 		]
             for key in document.keys():
                 if key not in required_keys: del document[key]
@@ -76,7 +76,7 @@ def extract_json(yr):
             if 'persons' in document:
                 for name in document['persons']:
                     if ',' in name: 
-                        name_parts = name.strip().split(',')
+                        name_parts = name.split(',')
                     else: 
                         name_parts = name.split(' ')
                         
@@ -84,7 +84,7 @@ def extract_json(yr):
                         gender = gender_labeling.gender_labeling(name)
                         first_names.append(name)
                     elif ',' in name: 
-                        name = name_parts[1].split(' ')[0].strip()
+                        name = name_parts[1].strip().split(' ')[0]
                         gender = gender_labeling.gender_labeling(name)
                         first_names.append(name)
                     else: 
@@ -120,7 +120,7 @@ def extract_json(yr):
             #output_data_path = os.path.join("json_data", year.strip())
             file_name = file_path.split('\\')
             path_prefix = year+'_'+str(i)
-            os.chdir('C:\Users\Tanu\Documents\GitHub\Detecting-Gender-Bias-in-News-Articles\json_data')
+            os.chdir('D:\Git\CSCE_670\Detecting-Gender-Bias-in-News-Articles\json_data')
 
             if not os.path.exists(path_prefix):
                 os.makedirs(path_prefix)
