@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 
-import sexmachine.detector as gender
+#import sexmachine.detector as gender
 
-def gender_labeling(user_input):
+def gender_labeling(gen):
     #user_input = raw_input("Enter name: ")
-    d = gender.Detector(case_sensitive=False)
-    gen = d.get_gender(user_input)
+    #d = gender.Detector(case_sensitive=False)
+    #gen = d.get_gender(user_input)
     if gen == 'male' or gen == 'mostly_male':
         gen = 'male'
     if gen == 'female' or gen == 'mostly_female':

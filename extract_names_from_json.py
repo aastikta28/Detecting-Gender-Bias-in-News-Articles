@@ -3,6 +3,7 @@ import json
 import name_recognition as nr
 import os
 import gender_labeling
+import sexmachine.detector
 #import re
 #import sys
 
@@ -13,9 +14,11 @@ def extract_json(yr):
    #     print 'Please use the format: python extract_names_from_json.py <year>'
     
     year = yr
+    d = sexmachine.detector.Detector(case_sensitive=False)
     
     data_path = os.path.join("data", year.strip())
     for i in range(1, 13):
+        
         directory = data_path + "_" + str(i)
         if not os.path.isdir(directory):
             continue
@@ -81,15 +84,18 @@ def extract_json(yr):
                         name_parts = name.split(' ')
                         
                     if len(name_parts) == 1: 
-                        gender = gender_labeling.gender_labeling(name)
+                        gender = d.get_gender(name)
+                        gender = gender_labeling.gender_labeling(gender)
                         first_names.append(name)
                     elif ',' in name: 
                         name = name_parts[1].strip().split(' ')[0]
-                        gender = gender_labeling.gender_labeling(name)
+                        gender = d.get_gender(name)
+                        gender = gender_labeling.gender_labeling(gender)
                         first_names.append(name)
                     else: 
                         name = name_parts[0].strip()
-                        gender = gender_labeling.gender_labeling(name)
+                        gender = d.get_gender(name)
+                        gender = gender_labeling.gender_labeling(gender)
                         first_names.append(name)
                         
                     if gender == 'male':
@@ -120,7 +126,7 @@ def extract_json(yr):
             #output_data_path = os.path.join("json_data", year.strip())
             file_name = file_path.split('\\')
             path_prefix = year+'_'+str(i)
-            os.chdir('D:\Git\CSCE_670\Detecting-Gender-Bias-in-News-Articles\json_data')
+            os.chdir('C:\Users\Tanu\Documents\GitHub\Detecting-Gender-Bias-in-News-Articles\json_data')
 
             if not os.path.exists(path_prefix):
                 os.makedirs(path_prefix)
