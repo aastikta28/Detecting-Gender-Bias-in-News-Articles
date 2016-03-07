@@ -40,8 +40,7 @@ def extract_json(yr):
 			'subsection_name',
 			'pub_date',
 			'keywords',
-            '_id',
-            'headline'                 
+            '_id',            
 		]
             for key in document.keys():
                 if key not in required_keys: del document[key]
@@ -109,7 +108,6 @@ def extract_json(yr):
             mydict = {
             "news_desk": document['news_desk'],
             "lead_paragraph": document['lead_paragraph'],
-            "headline": document['headline'],
             "word_count": document['word_count'],
             "_id": document['_id'],
             "snippet": document['snippet'],
@@ -126,14 +124,16 @@ def extract_json(yr):
             #output_data_path = os.path.join("json_data", year.strip())
             file_name = file_path.split('\\')
             path_prefix = year+'_'+str(i)
-            os.chdir('C:\Users\Tanu\Documents\GitHub\Detecting-Gender-Bias-in-News-Articles\json_data')
+            os.chdir('D:\Git\CSCE_670\Detecting-Gender-Bias-in-News-Articles\json_data')
 
             if not os.path.exists(path_prefix):
                 os.makedirs(path_prefix)
             os.chdir(path_prefix)
             
-            with open(file_name[2], mode='w') as feedsjson:            
-                json.dump(mydict, feedsjson)
+            feedsjson = open(file_name[2] + '.json', mode='w') 
+            feedsjson.write('[')
+            json.dump(mydict, feedsjson)
+            feedsjson.write(']')
             
             os.chdir(curr_dir)
             print first_names
