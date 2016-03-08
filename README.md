@@ -11,26 +11,20 @@ Accessing solr: http://detecting-gender-bias-achaitra11021.c9users.io/solr
 --------------------------------------------------------------------------------
 
 CORES
-Creating a core: bin/solr create -c "core_name"
+Creating a core: bin/solr create -c trial -d server/solr/configsets/basic_configs/
 
 --------------------------------------------------------------------------------
 
-DATA
-XML format:
-  <add>
-    <doc>
-      <field name="id">Value</field>
-      <field name="news_desk">Value</field>
-    </doc>
-  </add>
-  
 Adding files:
-    - cd to directory containing file
-    - curl "http://detecting-gender-bias-achaitra11021.c9users.io/solr/mycore/
-    update?commit=true" -H 'Content-type:text/xml' --data-binary @sample.xml
+    - cd to directory containing the month folder
+    - ../../solr/solr-5.4.1/bin/post -c trial <file> -p 8080  
 Querying core:
-    curl "http://detecting-gender-bias-achaitra11021.c9users.io/solr/mycore/
+    curl "http://detecting-gender-bias-achaitra11021.c9users.io/solr/trial/
     select?q=news_desk:Sports&wt=xml"
+    
+Deleting all files in index:
+curl http://localhost:8983/solr/update --data '<delete><query>*:*</query></delete>' -H 'Content-type:text/xml; charset=utf-8'
+curl http://localhost:8983/solr/update --data '<commit/>' -H 'Content-type:text/xml; charset=utf-8'
 
 --------------------------------------------------------------------------------
 
@@ -51,3 +45,8 @@ CLASSPATH
 Start Stanford NER server:
 java -mx1000m -cp stanford-ner-2015-04-20\stanford-ner.jar edu.stanford.nlp.ie.NERServer -loadClassifier stanford-ner-2015-04-20\classifiers\english.all.3class.distsim.crf.ser.gz -port 8080 -outputFormat inlineXML
 
+-------------------------------------------
+
+Schema details:
+1. Remove managed schema from solrconfig.xml
+2. 
