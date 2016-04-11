@@ -49,4 +49,11 @@ java -mx1000m -cp stanford-ner-2015-04-20\stanford-ner.jar edu.stanford.nlp.ie.N
 
 Schema details:
 1. Remove managed schema from solrconfig.xml
-2. 
+
+-------------------------------------------
+
+Accessing Banana UI:
+http://detecting-gender-bias-achaitra11021.c9users.io/solr/banana/src/index.html#/dashboard
+
+
+-------------------------------------------
