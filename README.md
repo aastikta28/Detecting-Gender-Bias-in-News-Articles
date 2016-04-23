@@ -12,12 +12,14 @@ Accessing solr: http://detecting-gender-bias-achaitra11021.c9users.io/solr
 
 CORES
 Creating a core: bin/solr create -c trial -d server/solr/configsets/basic_configs/
+Do not use above, use below for new cores instead:
+Creating a core: bin/solr create -c trial -d server/solr/configsets/data_driven_schema_configs/
 
 --------------------------------------------------------------------------------
 
 Adding files:
     - cd to directory containing the month folder
-    - ../../solr/solr-5.4.1/bin/post -c trial <file> -p 8080  
+    - ../../solr/solr-5.4.1/bin/post -c trial <month/*> -p 8080  
 Querying core:
     curl "http://detecting-gender-bias-achaitra11021.c9users.io/solr/trial/
     select?q=news_desk:Sports&wt=xml"
